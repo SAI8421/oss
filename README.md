@@ -276,6 +276,8 @@ atat=(float)ttat/n;
 printf("\n\nAvg Waiting Time : %f \nAvg Turn Around Time : %f \n",awt,atat);
 getch();
 }
+
+
 //Preemptive
 #include<stdio.h>
 void main()
