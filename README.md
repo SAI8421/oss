@@ -823,3 +823,193 @@ scanf("%d",&c); if(c==1)
 goto X; else
 return 0;
 }
+
+######## LINUX ########
+
+
+PRIME
+#!/bin/bash
+echo "Enter a number:"
+read num
+if ! [[ "$num" =~ ^[0-9]+$ ]]; then
+  echo "Please enter a valid number."
+  exit 1
+fi
+if [ $num -le 1 ]; then
+  echo "$num is not a prime number."
+  exit 0
+fi
+is_prime=1
+for (( i=2; i<=$((num/2)); i++ ))
+do
+  if [ $((num % i)) -eq 0 ]; then
+    is_prime=0
+    break
+  fi
+done
+if [ $is_prime -eq 1 ]; then
+  echo "$num is a prime number."
+else
+  echo "$num is not a prime number."
+fi
+
+
+
+FIBONACCI
+
+#!/bin/bash
+echo "Enter the range:"
+read range
+a=0
+b=1
+echo "Fibonacci series up to $range:"
+while [ $a -le $range ]
+do
+  echo -n "$a "
+  fib=$((a + b))
+  a=$b
+  b=$fib
+done
+echo
+
+
+
+ARMSTRONG
+
+#!/bin/bash
+echo "Enter a number:"
+read num
+original_num=$num
+sum=0
+len=${#num}
+while [ $num -gt 0 ]
+do
+  digit=$((num % 10))  
+  sum=$((sum + digit**len))  
+  num=$((num / 10))  
+done
+if [ $sum -eq $original_num ]; then
+  echo "$original_num is an Armstrong number."
+else
+  echo "$original_num is not an Armstrong number."
+fi
+
+
+
+
+MARKS
+
+#!/bin/bash
+echo "Enter student number:"
+read student_number
+echo "Enter student name:"
+read student_name
+echo "Enter marks for 5 subjects:"
+echo "Subject 1: "
+read marks1
+echo "Subject 2: "
+read marks2
+echo "Subject 3: "
+read marks3
+echo "Subject 4: "
+read marks4
+echo "Subject 5: "
+read marks5
+total=$((marks1 + marks2 + marks3 + marks4 + marks5))
+average=$((total / 5))
+if [ $average -ge 80 ]; then
+    grade="A"
+elif [ $average -ge 70 ]; then
+    grade="B"
+elif [ $average -ge 60 ]; then
+    grade="C"
+elif [ $average -ge 50 ]; then
+    grade="D"
+elif [ $average -ge 40 ]; then
+    grade="E"
+else
+    grade="F"
+fi
+echo "Student Number: $student_number"
+echo "Student Name: $student_name"
+echo "Total Marks: $total"
+echo "Average: $average"
+echo "Grade: $grade"
+
+
+
+
+maximum and minimum
+
+#!/bin/bash
+echo "Enter the number of elements:"
+read n
+echo "Enter $n numbers:"
+for ((i=0; i<n; i++))
+do
+  read arr[i]
+done
+max=${arr[0]}
+min=${arr[0]}
+for ((i=1; i<n; i++))
+do
+  if [ ${arr[i]} -gt $max ]; then
+    max=${arr[i]}
+  fi
+  if [ ${arr[i]} -lt $min ]; then
+    min=${arr[i]}
+  fi
+done
+echo "Maximum number: $max"
+echo "Minimum number: $min"
+
+
+
+PALINDROME
+
+#!/bin/bash
+echo "Enter a string:"
+read str
+len=${#str}
+rev=""
+for (( i=$len-1; i>=0; i-- ))
+do
+  rev="$rev${str:i:1}"
+done
+if [ "$str" == "$rev" ]; then
+  echo "The string is a palindrome."
+else
+  echo "The string is not a palindrome."
+fi
+
+COUNT OF CHARACTERS:
+
+#!/bin/bash
+echo "Enter the filename:"
+read filename
+if [ ! -f "$filename" ]; then
+  echo "File does not exist."
+  exit 1
+fi
+while IFS= read -r line
+do
+  char_count=$(echo -n "$line" | wc -m)
+  word_count=$(echo "$line" | wc -w)
+  echo "Line: $line"
+  echo "Number of characters: $char_count"
+  echo "Number of words: $word_count"
+  echo "------------------------"
+done < "$filename"
+
+
+
+NUMBER OR STRING
+
+#!/bin/bash
+echo "Enter a value:"
+read input
+if [[ "$input" =~ ^[0-9]+$ ]]; then
+  echo "$input is a number."
+else
+  echo "$input is a string."
+fi
